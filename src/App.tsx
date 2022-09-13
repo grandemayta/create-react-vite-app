@@ -1,11 +1,32 @@
+import { useQuery } from '@tanstack/react-query';
+import { User, getUsers } from '@apis';
 import './App.scss';
 
-function App() {
+interface Props {
+  name: string;
+  email: string;
+}
+
+function ListItem(props: Props) {
   return (
-    <div>
-      <h1>Create React Vite App</h1>
-      <p>aaa</p>
-    </div>
+    <li>
+      Name {props.name}
+      Email {props.email}
+    </li>
+  );
+}
+
+function App() {
+  const { data } = useQuery<User[], Error>(['users'], getUsers, {
+    initialData: [],
+  });
+
+  return (
+    <ul>
+      {data?.map((user: User) => (
+        <ListItem key={user.id} name={user.name} email={user.email} />
+      ))}
+    </ul>
   );
 }
 

@@ -1,32 +1,21 @@
 import { useQuery } from '@tanstack/react-query';
-import { User, getUsers } from '@apis';
+import { User, getUserProfile } from '@apis';
+import { Card, Welcome } from '@components';
 import './App.scss';
 
-interface Props {
-  name: string;
-  email: string;
-}
-
-function ListItem(props: Props) {
-  return (
-    <li>
-      Name {props.name}
-      Email {props.email}
-    </li>
-  );
-}
-
 function App() {
-  const { data } = useQuery<User[], Error>(['users'], getUsers, {
-    initialData: [],
-  });
+  const { data, isLoading, isError } = useQuery<User, Error>(
+    ['users'],
+    getUserProfile
+  );
 
   return (
-    <ul>
-      {data?.map((user: User) => (
-        <ListItem key={user.id} name={user.name} email={user.email} />
-      ))}
-    </ul>
+    <div className="container">
+      <Welcome />
+      {isLoading && <p>Loading...</p>}
+      {isError && <p>Opps! something was wrong.</p>}
+      {data && <Card {...data} />}
+    </div>
   );
 }
 

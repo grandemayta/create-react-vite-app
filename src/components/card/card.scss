@@ -6,7 +6,9 @@
   margin: 0 auto;
   border-radius: 10px;
   box-shadow: 0 0 2px #d0d0d0;
-  background: linear-gradient(to bottom, #9995c9 0%,#1a20d4 50%,white 50%);
+  &.has-image {
+    background: linear-gradient(to bottom, #9995c9 0%,#1a20d4 50%,white 50%);
+  }
 
   img {
     margin-top: 80px;
@@ -20,17 +22,21 @@
     padding-top: 14px;
     font-size: 18px;
     text-align: center;
+    padding-bottom: 14px;
+    &.has-subtitle {
+      padding-bottom: 0;
+    }
   }
 
   p {
     padding-top: 4px;
+    padding-bottom: 10px;
     color: #a0a0a0;
     font-size: 14px;
   }
 
   .card-divider {
     width: 100%;
-    margin-top: 10px;
     border: 1px solid #f0f0f0;
   }
 

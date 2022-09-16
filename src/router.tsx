@@ -4,6 +4,9 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 const Home = lazy(async () => await import('./pages/home/home'));
 const Followers = lazy(async () => await import('./pages/followers/followers'));
 const Following = lazy(async () => await import('./pages/following/following'));
+const Repositories = lazy(
+  async () => await import('./pages/repositories/repositories')
+);
 
 export function Router() {
   const router = createBrowserRouter([
@@ -19,6 +22,10 @@ export function Router() {
     {
       path: 'following',
       element: <Following />,
+    },
+    {
+      path: 'repositories',
+      element: <Repositories />,
     },
   ]);
 

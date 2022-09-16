@@ -11,7 +11,7 @@ app.use(cors({ credentials: true, origin: true }));
 
 router
   .use((req, res, next) => {
-    setTimeout(next, 3000);
+    setTimeout(next, 2000);
   })
   .get('/user/:id', (req, res) => res.json(user));
 

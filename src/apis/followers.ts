@@ -1,6 +1,6 @@
 import { fetchWrapper } from './fetchWrapper';
 
-export interface IFollowers {
+export interface IFollower {
   login: string;
   id: number;
   node_id: string;
@@ -21,8 +21,8 @@ export interface IFollowers {
   site_admin: boolean;
 }
 
-export const getFollowers = (): Promise<Array<IFollowers>> => {
+export const getFollowers = (): Promise<Array<IFollower>> => {
   return fetchWrapper(`${import.meta.env.VITE_USER_URL}/grandemayta/followers`)
     .then((response) => response.json())
-    .then((data: Array<IFollowers>) => data);
+    .then((data: Array<IFollower>) => data);
 };

@@ -1,7 +1,7 @@
 import { fetchWrapper } from './fetchWrapper';
-import { IFollowers } from './followers';
+import { IFollower } from './followers';
 
-export type IFollowing = IFollowers;
+export type IFollowing = IFollower;
 
 export const getFollowing = (): Promise<Array<IFollowing>> => {
   return fetchWrapper(`${import.meta.env.VITE_USER_URL}/grandemayta/following`)

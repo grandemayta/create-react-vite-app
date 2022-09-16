@@ -1,6 +1,6 @@
 import { fetchWrapper } from './fetchWrapper';
 
-export interface IUser {
+export interface IFollowers {
   login: string;
   id: number;
   node_id: string;
@@ -19,24 +19,10 @@ export interface IUser {
   received_events_url: string;
   type: string;
   site_admin: boolean;
-  name: string;
-  company: string;
-  blog: string;
-  location: string;
-  email: string;
-  hireable: boolean;
-  bio: string;
-  twitter_username: string;
-  public_repos: number;
-  public_gists: number;
-  followers: number;
-  following: number;
-  created_at: string;
-  updated_at: string;
 }
 
-export const getUserProfile = (): Promise<IUser> => {
-  return fetchWrapper(`${import.meta.env.VITE_USER_URL}/grandemayta`)
+export const getFollowers = (): Promise<Array<IFollowers>> => {
+  return fetchWrapper(`${import.meta.env.VITE_USER_URL}/grandemayta/followers`)
     .then((response) => response.json())
-    .then((data: IUser) => data);
+    .then((data: Array<IFollowers>) => data);
 };

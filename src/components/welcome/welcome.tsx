@@ -20,6 +20,9 @@ export function Welcome() {
           <a href="">Typescript</a>
         </li>
         <li>
+          <a href="">React Router</a>
+        </li>
+        <li>
           <a href="">EsLint + Prettier</a>
         </li>
         <li>

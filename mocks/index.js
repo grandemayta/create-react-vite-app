@@ -10,7 +10,11 @@ const port = 3002;
 app.use(cors({ credentials: true, origin: true }));
 
 router
+  .use((req, res, next) => {
+    setTimeout(next, 3000);
+  })
   .get('/user/:id', (req, res) => res.json(user));
 
 app.use('/v1/', router);
+
 app.listen(port, () => console.log(`Server available on Port ${port}`));

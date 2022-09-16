@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 import { IUser, getUserProfile } from '@apis';
-import { Card, CartBottom, Welcome } from '@components';
+import { Card, CardBottom, Welcome } from '@components';
 import { useNavigate } from 'react-router-dom';
 
 function Home() {
@@ -22,21 +22,21 @@ function Home() {
           subTitle={data.location}
           image={data.avatar_url}
           left={
-            <CartBottom
+            <CardBottom
               onClick={() => navigate('followers')}
               label="Followers"
               value={data.followers}
             />
           }
           center={
-            <CartBottom
+            <CardBottom
               onClick={() => navigate('repositories')}
               label="Repositories"
               value={data.public_repos}
             />
           }
           right={
-            <CartBottom
+            <CardBottom
               onClick={() => navigate('following')}
               label="Following"
               value={data.following}

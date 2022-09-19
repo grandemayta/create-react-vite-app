@@ -1,6 +1,6 @@
 import './card.scss';
 
-export * from './card-bottom';
+export * from './card-bottom/card-bottom';
 
 interface CardProps {
   title: string;

@@ -4,9 +4,6 @@ import { Card } from './card';
 const title = 'Pinco';
 const image = 'image.jpg';
 const subTitle = 'Lima';
-const left = 'left';
-const center = 'center';
-const right = 'right';
 
 test('<Card /> Should render the Card with required props', () => {
   render(<Card title={title} />);
@@ -23,7 +20,7 @@ test('<Card /> Should render the Card with the image and subTitle', () => {
 });
 
 test('<Card /> Should render the Card with card bottom Props', () => {
-  render(<Card title={title} left={left} center={center} right={right} />);
+  render(<Card title={title} left="left" center="center" right="right" />);
 
   expect(screen.getByText(title)).toBeInTheDocument();
 });

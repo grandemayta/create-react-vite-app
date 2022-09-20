@@ -1,6 +1,11 @@
-import { render } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import { CardBottom } from './card-bottom';
 
 test('<CardBottom /> Should render component', () => {
-  render(<CardBottom label="Followers" value={200} />);
+  const label = 'Followers';
+  const value = 200;
+  render(<CardBottom label={label} value={value} />);
+
+  expect(screen.getByText(label)).toBeInTheDocument();
+  expect(screen.getByText(value)).toBeInTheDocument();
 });

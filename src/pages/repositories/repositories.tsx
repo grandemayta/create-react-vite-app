@@ -1,12 +1,8 @@
-import { useQuery } from '@tanstack/react-query';
-import { getRepositories, IRepository } from '@apis';
+import { useRepositories } from '@apis';
 import { Card, CardBottom } from '@components';
 
 function Repositories() {
-  const { isSuccess, isLoading, isError, data } = useQuery<Array<IRepository>>(
-    ['repositories'],
-    getRepositories
-  );
+  const { isSuccess, isLoading, isError, data } = useRepositories();
 
   return (
     <div className="container">

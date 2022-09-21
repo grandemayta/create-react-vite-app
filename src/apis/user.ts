@@ -1,4 +1,4 @@
-import { fetchWrapper } from './fetchWrapper';
+import { useQuery, UseQueryResult } from '@tanstack/react-query';
 
 export interface IUser {
   login: string;
@@ -34,9 +34,13 @@ export interface IUser {
   created_at: string;
   updated_at: string;
 }
+const userEndpoint = `${import.meta.env.VITE_USER_URL}/grandemayta`;
 
-export const getUserProfile = (): Promise<IUser> => {
-  return fetchWrapper(`${import.meta.env.VITE_USER_URL}/grandemayta`)
-    .then((response) => response.json())
-    .then((data: IUser) => data);
+export const useUserInfo = (): UseQueryResult<IUser, Error> => {
+  return useQuery<IUser, Error>(['user'], () =>
+    fetch(userEndpoint).then((response) => {
+      if (!response.ok) throw new Error('');
+      return response.json();
+    })
+  );
 };

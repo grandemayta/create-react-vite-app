@@ -1,14 +1,10 @@
-import { useQuery } from '@tanstack/react-query';
-import { IUser, getUserProfile } from '@apis';
+import { useUserInfo } from '@apis';
 import { Card, CardBottom, Welcome } from '@components';
 import { useNavigate } from 'react-router-dom';
 
 function Home() {
   const navigate = useNavigate();
-  const { isSuccess, isLoading, isError, data } = useQuery<IUser>(
-    ['users'],
-    getUserProfile
-  );
+  const { isSuccess, isLoading, isError, data } = useUserInfo();
 
   return (
     <div className="container">

@@ -1,4 +1,4 @@
-import { fetchWrapper } from './fetchWrapper';
+import { useQuery, UseQueryResult } from '@tanstack/react-query';
 
 export interface IFollower {
   login: string;
@@ -21,8 +21,15 @@ export interface IFollower {
   site_admin: boolean;
 }
 
-export const getFollowers = (): Promise<Array<IFollower>> => {
-  return fetchWrapper(`${import.meta.env.VITE_USER_URL}/grandemayta/followers`)
-    .then((response) => response.json())
-    .then((data: Array<IFollower>) => data);
+const followersEndpoint = `${
+  import.meta.env.VITE_USER_URL
+}/grandemayta/followers`;
+
+export const useFollowers = (): UseQueryResult<Array<IFollower>, Error> => {
+  return useQuery<Array<IFollower>, Error>(['followers'], () =>
+    fetch(followersEndpoint).then((response) => {
+      if (!response.ok) throw new Error('');
+      return response.json();
+    })
+  );
 };

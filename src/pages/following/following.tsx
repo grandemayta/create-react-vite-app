@@ -1,12 +1,8 @@
-import { useQuery } from '@tanstack/react-query';
-import { IFollowing, getFollowing } from '@apis';
+import { useFollowing } from '@apis';
 import { Card } from '@components';
 
 function Following() {
-  const { isSuccess, isLoading, isError, data } = useQuery<Array<IFollowing>>(
-    ['following'],
-    getFollowing
-  );
+  const { isSuccess, isLoading, isError, data } = useFollowing();
 
   return (
     <div className="container">

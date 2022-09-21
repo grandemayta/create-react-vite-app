@@ -1,12 +1,8 @@
-import { useQuery } from '@tanstack/react-query';
-import { IFollower, getFollowers } from '@apis';
+import { useFollowers } from '@apis';
 import { Card } from '@components';
 
 function Followers() {
-  const { isSuccess, isLoading, isError, data } = useQuery<Array<IFollower>>(
-    ['followers'],
-    getFollowers
-  );
+  const { isSuccess, isLoading, isError, data } = useFollowers();
 
   return (
     <div className="container">

@@ -1,4 +1,4 @@
-import { fetchWrapper } from './fetchWrapper';
+import { useQuery, UseQueryResult } from '@tanstack/react-query';
 
 export interface IRepository {
   id: number;
@@ -76,8 +76,18 @@ export interface IRepository {
   default_branch: string;
 }
 
-export const getRepositories = (): Promise<Array<IRepository>> => {
-  return fetchWrapper(`${import.meta.env.VITE_USER_URL}/grandemayta/repos`)
-    .then((response) => response.json())
-    .then((data: Array<IRepository>) => data);
+const repositoriesEndpoint = `${
+  import.meta.env.VITE_USER_URL
+}/grandemayta/repos`;
+
+export const useRepositories = (): UseQueryResult<
+  Array<IRepository>,
+  Error
+> => {
+  return useQuery<Array<IRepository>, Error>(['repositories'], () =>
+    fetch(repositoriesEndpoint).then((response) => {
+      if (!response.ok) throw new Error('');
+      return response.json();
+    })
+  );
 };

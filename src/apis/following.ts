@@ -1,10 +1,17 @@
-import { fetchWrapper } from './fetchWrapper';
+import { useQuery, UseQueryResult } from '@tanstack/react-query';
 import { IFollower } from './followers';
 
 export type IFollowing = IFollower;
 
-export const getFollowing = (): Promise<Array<IFollowing>> => {
-  return fetchWrapper(`${import.meta.env.VITE_USER_URL}/grandemayta/following`)
-    .then((response) => response.json())
-    .then((data: Array<IFollowing>) => data);
+const followingEndpoint = `${
+  import.meta.env.VITE_USER_URL
+}/grandemayta/following`;
+
+export const useFollowing = (): UseQueryResult<Array<IFollowing>, Error> => {
+  return useQuery<Array<IFollowing>, Error>(['following'], () =>
+    fetch(followingEndpoint).then((response) => {
+      if (!response.ok) throw new Error('');
+      return response.json();
+    })
+  );
 };

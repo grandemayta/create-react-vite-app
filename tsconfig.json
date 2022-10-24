@@ -29,6 +29,11 @@
   "include": [
     "src"
   ],
+  "ts-node": {
+    "compilerOptions": {
+      "module": "Node16"
+    }
+  },
   "references": [
     {
       "path": "./tsconfig.node.json"

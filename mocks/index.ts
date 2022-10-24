@@ -1,10 +1,10 @@
-import express from 'express';
-import cors from 'cors';
+import * as express from 'express';
+import * as cors from 'cors';
 
-import user from './data/user.json';
-import followers from './data/followers.json';
-import following from './data/following.json';
-import repos from './data/repositories.json';
+import * as user from './data/user.json';
+import * as followers from './data/followers.json';
+import * as following from './data/following.json';
+import * as repos from './data/repositories.json';
 
 const app = express();
 const router = express.Router();
